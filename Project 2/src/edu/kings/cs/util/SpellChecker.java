@@ -7,13 +7,22 @@ package edu.kings.cs.util;
  */
 public class SpellChecker {
 	
+	private LinkedSet<String> dictionary;
+	private LinkedBag<String> readDocument;
+	private LinkedSet<String> correctWords;
+	private LinkedSet<String> incorrectWords;
+	
+	public SpellChecker() {
+		dictionary = new LinkedSet<String>();
+	}
+	
 	/**
 	 * Prompts user for name of file that contains the read document.
 	 * Scans file and reads words one at a time storing them in a collection.
 	 * After, displays message indicating number of words found in that document.
 	 */
 	public void readDocument() {
-		
+		readDocument = new LinkedBag<String>();
 	}
 	
 	/**
@@ -22,6 +31,7 @@ public class SpellChecker {
 	 * words are not listed more than once.
 	 */
 	public void listCorrectWords() {
+		correctWords = new LinkedSet<String>();
 		
 	}
 	
@@ -31,7 +41,7 @@ public class SpellChecker {
 	 * be listed more than once.
 	 */
 	public void listIncorrectWords() {
-		
+		incorrectWords = new LinkedSet<String>();
 	}
 	
 	/**
@@ -58,9 +68,10 @@ public class SpellChecker {
 	 * user for a word and then displays a message with word frequency.
 	 * @return count The number of times a word appears in a document.
 	 */
-	public int getFrequencyOf() {
-		int count = 0;
-		return count;
+	public int getFrequencyOf(String word) {
+		int frequency = readDocument.getFrequencyOf(word);
+		System.out.println("Frequency: " + frequency);
+		return frequency;
 	}
 	
 	/**
