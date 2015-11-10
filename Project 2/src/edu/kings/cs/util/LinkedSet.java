@@ -8,13 +8,16 @@ package edu.kings.cs.util;
  * @param <T>
  */
 public class LinkedSet<T> implements Set<T> {
+	
+	private int size;
+	
 	/**
 	 * Gets the current number of entries in this collection.
 	 * 
 	 * @return The integer number of entries currently in this collection.
 	 */
 	public int size() {
-		
+		return size;
 	}
 
 	/**
@@ -23,7 +26,11 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return True if this collection is empty, or false if not.
 	 */
 	public boolean isEmpty() {
-		
+		boolean isEmpty = true;
+		if (size > 0) {
+			isEmpty = false;
+		}
+		return isEmpty;
 	}
 	
 	/**
@@ -35,7 +42,8 @@ public class LinkedSet<T> implements Set<T> {
 	 *         is in the set.
 	 */
 	public boolean add(T newEntry) {
-		
+		boolean wasAdded = true;
+		return wasAdded;
 	}
 
 	/**
@@ -46,7 +54,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return True if the removal was successful, or false if not.
 	 */
 	public boolean remove(T anEntry) {
-		
+		boolean wasRemoved = false;
+		return wasRemoved;
 	}
 
 	/**
@@ -55,7 +64,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return Either the removed entry, if the removal was successful, or null.
 	 */
 	public T remove() {
-		
+		T removedEntry = null;
+		return removedEntry;
 	}
 
 	/** Removes all entries from this set. */
@@ -71,7 +81,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return True if the set contains anEntry, or false if not.
 	 */
 	public boolean contains(T anEntry) {
-		
+		boolean found = false;
+		return found;
 	}
 
 	/**
@@ -80,7 +91,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A newly allocated array of all the entries in the set.
 	 */
 	public Object[] toArray() {
-		
+		Object[] array = null;
+		return array;
 	}
 	
 	/**
@@ -95,7 +107,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> union(Set<T> anotherSet) {
-		
+		Set<T> set = null;
+		return set;
 	}
 
 	/**
@@ -111,7 +124,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> intersection(Set<T> anotherSet) {
-		
+		Set<T> set = null;
+		return set;
 	}
 
 	/**
@@ -127,7 +141,8 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> difference(Set<T> anotherSet) {	
-		
+		Set<T> set = null;
+		return set;
 	}
 
 }
