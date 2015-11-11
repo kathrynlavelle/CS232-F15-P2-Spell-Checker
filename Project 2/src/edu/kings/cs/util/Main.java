@@ -1,5 +1,6 @@
 package edu.kings.cs.util;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -13,9 +14,10 @@ public class Main {
 	/**
 	 * 
 	 * @param args An array of String arguments.
+	 * @throws FileNotFoundException Thrown if SpellChecker cannot find "dictionary.txt".
 	 */
-	public static void main(String[] args) {
-		// Initialize new SpellChecker;
+	public static void main(String[] args) throws FileNotFoundException {
+		// Initialize program dictionary.
 		SpellChecker sc = new SpellChecker();
 		System.out.println("Welcome!");
 		

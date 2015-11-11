@@ -1,5 +1,9 @@
 package edu.kings.cs.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * 
  * @author Kathryn Lavelle
@@ -14,8 +18,28 @@ public class SpellChecker {
 	private LinkedSet<String> incorrectWords;
 	private boolean modified = false;
 	
-	public SpellChecker() {
+	/**
+	 * 
+	 * @throws FileNotFoundException Thrown if no dictionary file was found by the
+	 * name of "dictionary.txt".
+	 */
+	public SpellChecker() throws FileNotFoundException {
+		// Initialize dictionary with contents of provided "dictionary.txt" file.
 		dictionary = new LinkedSet<String>();
+		File file = new File("tempDictionary.txt");
+		try {
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				dictionary.add(line);
+			}
+			scanner.close();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("An error occurred while initializing program dicitonary. File not found.");
+		}
+		
+		System.out.println("dictionary initialized size: " + dictionary.size());
 	}
 	
 	/**
@@ -54,7 +78,7 @@ public class SpellChecker {
 	 * listed more than once.
 	 */
 	public void approve() {
-		
+		// TO-DO1
 	}
 	
 	/**
@@ -63,6 +87,7 @@ public class SpellChecker {
 	 * are listed more than once.
 	 */
 	public void approveAll() {
+		// TO-DO
 		
 	}
 	
@@ -91,6 +116,7 @@ public class SpellChecker {
 	 * (Replaces current contents and writes each word on a new line)
 	 */
 	public void saveDictionary() {
+		// TO-DO
 		System.out.println("Saving...");
 	}
 	
