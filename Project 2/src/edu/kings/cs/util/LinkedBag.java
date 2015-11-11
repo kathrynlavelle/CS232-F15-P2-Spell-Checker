@@ -8,8 +8,16 @@ package edu.kings.cs.util;
  * @param <T>
  */
 public class LinkedBag<T> implements Bag<T> {
-	
+	private Node first;
 	private int size;
+	
+	/**
+	 * Initializes an empty bag.
+	 */
+	public LinkedBag() {
+		first = null;
+		size = 0;
+	}
 	
 	/**
 	 * Gets the current number of entries in this collection.
@@ -26,11 +34,7 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return True if this collection is empty, or false if not.
 	 */
 	public boolean isEmpty() {
-		boolean isEmpty = true;
-		if (size > 0) {
-			isEmpty = false;
-		}
-		return isEmpty;
+		return first == null;
 	}
 	/**
 	 * Adds a new entry to this bag.
@@ -40,8 +44,10 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return True if the addition is successful, or false if not.
 	 */
 	public boolean add(T newEntry) {
-		boolean wasAdded = true;
-		return wasAdded;
+		Node newNode = new Node(newEntry);
+		newNode.setNext(first);
+		first = newNode;
+		return true;
 		
 	}
 
@@ -53,6 +59,12 @@ public class LinkedBag<T> implements Bag<T> {
 	 */
 	public T remove() {
 		T removedEntry = null;
+		if (!isEmpty()) {
+			Node oldfirst = first;
+			first = oldfirst.getNext();
+			removedEntry = oldfirst.getData();
+			size--;
+		}
 		return removedEntry;
 		
 	}
@@ -65,14 +77,26 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return True if the removal was successful, or false if not.
 	 */
 	public boolean remove(T anEntry) {
-		boolean wasRemoved = false;
-		return wasRemoved;
+		boolean removed = false;
+		if (this.contains(anEntry)) {
+			Node currNode = first;
+			while (removed == false) {
+				if (currNode.getData().equals(anEntry)) {
+					currNode.setData(first.getData());
+					remove();
+					removed = true;
+				}
+				currNode = currNode.getNext();
+			}
+		}
+		return removed;
 		
 	}
 
 	/** Removes all entries from this bag. */
 	public void clear() {
-		
+		first = null;
+		size = 0;
 	}
 
 	/**
@@ -83,8 +107,17 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return The number of times anEntry appears in the bag.
 	 */
 	public int getFrequencyOf(T anEntry) {
-		int count = 0;
-		return count;
+		int frequency = 0;
+		if (this.contains(anEntry)) {
+			Node currNode = first;
+			while (currNode != null) {
+				if (currNode.getData().equals(anEntry)) {
+					frequency++;
+				}
+				currNode = currNode.getNext();
+			}
+		}
+		return frequency;
 		
 	}
 
@@ -97,6 +130,15 @@ public class LinkedBag<T> implements Bag<T> {
 	 */
 	public boolean contains(T anEntry) {
 		boolean found = false;
+		if (!isEmpty()) {
+			Node currNode = first;
+			while ((currNode != null) && (found == false)) {
+				if (currNode.getData().equals(anEntry)) {
+					found = true;
+				}
+				currNode = currNode.getNext();
+			}
+		}
 		return found;
 		
 	}
@@ -108,8 +150,16 @@ public class LinkedBag<T> implements Bag<T> {
 	 *         the bag is empty, the returned array is empty.
 	 */
 	public Object[] toArray() {
-		Object[] array = null;
-		return array;
+		Object[] entries = null;
+		Node currNode = first;
+		while (currNode != null) {
+			entries = new Object[size];
+			for (int i = 0; i < size; i++) {
+				entries[i] = currNode.getData();
+				currNode = currNode.getNext();
+			}
+		}
+		return entries;
 		
 	}
 
@@ -167,6 +217,40 @@ public class LinkedBag<T> implements Bag<T> {
 	public Bag<T> difference(Bag<T> anotherBag) {
 		Bag<T> bag = null;
 		return bag;
+	}
+	
+	/**
+	 * Private inner class representing a node in this Bag.
+	 */
+	private class Node {
+
+		private T data;
+		private Node next;
+
+		private Node(T element) {
+			this(element, null);
+		}
+
+		private Node(T element, Node nextNode) {
+			data = element;
+			next = nextNode;
+		}
+
+		private T getData() {
+			return data;
+		}
+
+		private void setData(T newData) {
+			data = newData;
+		}
+
+		private Node getNext() {
+			return next;
+		}
+
+		private void setNext(Node nextNode) {
+			next = nextNode;
+		}
 	}
 }
 
