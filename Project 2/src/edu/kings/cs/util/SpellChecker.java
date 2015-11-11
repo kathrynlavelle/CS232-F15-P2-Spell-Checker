@@ -9,6 +9,7 @@ public class SpellChecker {
 	
 	private LinkedSet<String> dictionary;
 	private LinkedBag<String> readDocument;
+	private LinkedSet<String> readDocumentNoDuplicates;
 	private LinkedSet<String> correctWords;
 	private LinkedSet<String> incorrectWords;
 	private boolean modified = false;
@@ -24,6 +25,7 @@ public class SpellChecker {
 	 */
 	public void readDocument() {
 		readDocument = new LinkedBag<String>();
+		readDocumentNoDuplicates = new LinkedSet<String>();
 	}
 	
 	/**
