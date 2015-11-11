@@ -69,7 +69,11 @@ public class SpellChecker {
 	 * @return count The number of times a word appears in a document.
 	 */
 	public int getFrequencyOf(String word) {
-		return readDocument.getFrequencyOf(word);
+		int frequency = 0;
+		if (readDocument != null) {
+			frequency = readDocument.getFrequencyOf(word);
+		}
+		return frequency;
 	}
 	
 	/**

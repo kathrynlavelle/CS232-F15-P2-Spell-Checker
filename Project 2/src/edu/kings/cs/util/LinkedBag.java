@@ -108,14 +108,14 @@ public class LinkedBag<T> implements Bag<T> {
 	 */
 	public int getFrequencyOf(T anEntry) {
 		int frequency = 0;
-		if (this.contains(anEntry)) {
+		if (!isEmpty()) {
 			Node currNode = first;
 			while (currNode != null) {
 				if (currNode.getData().equals(anEntry)) {
 					frequency++;
 				}
 				currNode = currNode.getNext();
-			}
+			}	
 		}
 		return frequency;
 		

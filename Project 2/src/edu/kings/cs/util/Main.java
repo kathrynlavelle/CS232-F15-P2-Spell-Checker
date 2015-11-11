@@ -39,7 +39,7 @@ public class Main {
 			System.out.println("8) Save Dictionary\n");
 			
 			// Prompts the user for the option they wish to execute.
-			System.out.println("Select option number (or 'quit' to exit): ");
+			System.out.print("Select option number (or 'quit' to exit): ");
 			
 			// Retrieves the number option that user chooses.
 			String input = keyboard.next();
