@@ -7,15 +7,15 @@ import java.util.Scanner;
 /**
  * 
  * @author Kathryn Lavelle
- * @version 2015-11-10
+ * @version 2015-11-11
  */
 public class SpellChecker {
 	
-	private LinkedSet<String> dictionary;
-	private LinkedBag<String> readDocument;
-	private LinkedSet<String> readDocumentNoDuplicates;
-	private LinkedSet<String> correctWords;
-	private LinkedSet<String> incorrectWords;
+	private Set<String> dictionary;
+	private Bag<String> readDocument;
+	private Set<String> readDocumentNoDuplicates;
+	private Set<String> correctWords;
+	private Set<String> incorrectWords;
 	private boolean modified = false;
 	
 	/**
@@ -27,7 +27,7 @@ public class SpellChecker {
 		// Initialize empty dictionary collection.
 		dictionary = new LinkedSet<String>();
 		
-		// Add contents of provided "dictionary.txt" file dictionary.
+		// Add contents of provided "dictionary.txt" file to dictionary.
 		File file = new File("tempDictionary.txt");
 		try {
 			Scanner scanner = new Scanner(file);
@@ -48,7 +48,7 @@ public class SpellChecker {
 	 * Scans file and reads words one at a time storing them in a collection.
 	 * After, displays message indicating number of words found in that document.
 	 */
-	public void readDocument() {
+	public void readDocument() throws FileNotFoundException{
 		// Initialize 2 empty read document collections, one without duplicate words.
 		readDocument = new LinkedBag<String>();
 		readDocumentNoDuplicates = new LinkedSet<String>();
@@ -68,13 +68,17 @@ public class SpellChecker {
 				readDocumentNoDuplicates.add(word);
 			}
 			scanner.close();
+			System.out.println("Document read");
+
+			// Display message showing how many words were in the read document.
+			System.out.println("This document contains " + readDocument.size() + " words.");
+			System.out.println("Set contains " + readDocumentNoDuplicates.size() + " words");
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("An error occurred while reading document. Specified file not found.");
+			readDocument = null;
+			readDocumentNoDuplicates = null;
+			System.out.println("Error: File '" + readDocFileName + "' not found. Please try again.");
 		}
-		
-		// Display message showing how many words were in the read document.
-		System.out.println("This document contains " + readDocument.size() + " words.");
 	}
 	
 	/**
@@ -83,16 +87,24 @@ public class SpellChecker {
 	 * words are not listed more than once.
 	 */
 	public void listCorrectWords() {
+		// Initialize empty corretWords collection.
 		correctWords = new LinkedSet<String>();
-		if (readDocument != null) {
-			// TO-DO
+		if (readDocumentNoDuplicates != null) {
+			// Add all of the words from the readDocument that are also in the dictionary to the
+			// correctWords collection.
+			correctWords = readDocumentNoDuplicates.intersection(dictionary);
+			
+			// List the correctly spelled words from the read document.
+			System.out.println("Correctly spelled words:");
+			Object[] correctWordsArray = correctWords.toArray();
+			for (int i = 0; i < correctWordsArray.length; i++) {
+				System.out.println(correctWordsArray[i]);
+			}
 		}
 		else {
 			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
 					+ " before using this feature.");
 		}
-		
-		
 	}
 	
 	/**
@@ -151,6 +163,7 @@ public class SpellChecker {
 		int frequency = 0;
 		if (readDocument != null) {
 			frequency = readDocument.getFrequencyOf(word);
+			System.out.println("Frequency: " + frequency);
 		}
 		else {
 			System.out.println("You have not read in a document. Please indicate file name"

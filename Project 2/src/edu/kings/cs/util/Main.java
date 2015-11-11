@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * 
  * @author Kathryn Lavelle
- * @version 2015-11-10
+ * @version 2015-11-11
  *
  */
 public class Main {
@@ -60,7 +60,7 @@ public class Main {
 							break;
 			case "6":		System.out.print("Get frequency of: ");
 							String word = keyboard.next();
-							System.out.println("Frequency: " + sc.getFrequencyOf(word));
+							sc.getFrequencyOf(word);
 							break;
 			case "7":		sc.dictionarySize();
 							break;
