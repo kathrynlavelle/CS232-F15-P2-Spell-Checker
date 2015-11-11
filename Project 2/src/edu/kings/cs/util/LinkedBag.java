@@ -3,7 +3,7 @@ package edu.kings.cs.util;
 /**
  * This class is a linked-list implementation of the Bag<T> interface.
  * @author Kathryn Lavelle
- * @version 2015-11-10
+ * @version 2015-11-11
  *
  * @param <T>
  */
@@ -179,11 +179,8 @@ public class LinkedBag<T> implements Bag<T> {
 		Bag<T> bag = anotherBag;
 		Node currNode = first;
 		while (currNode != null) {
-			T data = currNode.getData();
-			if (!bag.contains(data)) {
-				bag.add(data);
-				currNode = currNode.getNext();
-			}
+			bag.add(currNode.getData());
+			currNode = currNode.getNext();
 		}
 		return bag;
 	}
@@ -196,15 +193,34 @@ public class LinkedBag<T> implements Bag<T> {
 	 * intersection of the bag receiving the call to the method and the bag that is 
 	 * the method's one argument.  Note that the intersection might contain duplicate 
 	 * items.  For example, if object x occurs five times in one bag and twice in 
-	 * another, the intersection of these bags contains $x$ twice.
+	 * another, the intersection of these bags contains x twice.
 	 * 
 	 * @param anotherBag
 	 *            The bag that is to be compared.
 	 * @return A combined bag.
 	 */
 	public Bag<T> intersection(Bag<T> anotherBag) {
-		// TO-D0 IMPLEMENT ME
-		Bag<T> bag = null;
+		Bag<T> bag = new LinkedBag<T>();
+		Node currNode = first;
+		while (currNode != null) {
+			if (anotherBag.contains(currNode.getData())) {
+				int freqInBag1 = getFrequencyOf(currNode.getData());
+				int freqInBag2 = anotherBag.getFrequencyOf(currNode.getData());
+				int freqInBoth = 0;
+				if (freqInBag1 > freqInBag2) {
+					freqInBoth = freqInBag2;
+				}
+				else if (freqInBag1 < freqInBag2) {
+					freqInBoth = freqInBag1;
+				}
+				else {
+					freqInBoth = freqInBag1;
+				}
+				for (int i = 0; i < freqInBoth; i++) {
+					bag.add(currNode.getData());
+				}
+			}
+		}
 		return bag;
 	}
 

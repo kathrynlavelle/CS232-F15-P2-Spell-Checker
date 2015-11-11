@@ -3,7 +3,7 @@ package edu.kings.cs.util;
 /**
  * This class is a linked-list implementation of the Set<T> interface.
  * @author Kathryn Lavelle
- * @version 2015-11-10
+ * @version 2015-11-11
  *
  * @param <T>
  */
@@ -157,11 +157,8 @@ public class LinkedSet<T> implements Set<T> {
 		Set<T> set = anotherSet;
 		Node currNode = first;
 		while (currNode != null) {
-			T data = currNode.getData();
-			if (!set.contains(data)) {
-				set.add(data);
-				currNode = currNode.getNext();
-			}
+			set.add(currNode.getData());
+			currNode = currNode.getNext();
 		}
 		return set;
 	}
@@ -179,8 +176,13 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> intersection(Set<T> anotherSet) {
-		// TO-D0 IMPLEMENT ME
-		Set<T> set = null;
+		Set<T> set = new LinkedSet<T>();
+		Node currNode = first;
+		while (currNode != null) {
+			if (anotherSet.contains(currNode.getData())) {
+				set.add(currNode.getData());
+			}
+		}
 		return set;
 	}
 
