@@ -11,6 +11,7 @@ public class SpellChecker {
 	private LinkedBag<String> readDocument;
 	private LinkedSet<String> correctWords;
 	private LinkedSet<String> incorrectWords;
+	private boolean modified = false;
 	
 	public SpellChecker() {
 		dictionary = new LinkedSet<String>();
@@ -48,7 +49,7 @@ public class SpellChecker {
 	 * User reviews incorrectly spelled words one at a time, and decides if the
 	 * word is properly spelled. If user indicates a word is spelled correctly,
 	 * it is added to the programs dictionary. Words listed for approval are not
-	 * are not listed more than once.
+	 * listed more than once.
 	 */
 	public void approve() {
 		
@@ -64,8 +65,8 @@ public class SpellChecker {
 	}
 	
 	/**
-	 * Returns the number of times a word appears in the read document. Prompts
-	 * user for a word and then displays a message with word frequency.
+	 * Returns the number of times a word appears in the read document. 
+	 * 
 	 * @return count The number of times a word appears in a document.
 	 */
 	public int getFrequencyOf(String word) {
@@ -80,7 +81,7 @@ public class SpellChecker {
 	 * Displays message stating how many words are in the programs dictionary.
 	 */
 	public void dictionarySize() {
-		
+		System.out.println("There are currently " + dictionary.size() + " words in the dictionary.");	
 	}
 	
 	/**
@@ -88,7 +89,15 @@ public class SpellChecker {
 	 * (Replaces current contents and writes each word on a new line)
 	 */
 	public void saveDictionary() {
-		
+		System.out.println("Saving...");
+	}
+	
+	/**
+	 * 
+	 * @return modified Whether or not the programs dictionary was modified.
+	 */
+	public boolean getModified() {
+		return modified;
 	}
 
 }

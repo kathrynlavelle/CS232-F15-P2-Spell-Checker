@@ -56,7 +56,7 @@ public class Main {
 							break;
 			case "5":		sc.approveAll();
 							break;
-			case "6":		System.out.print("Find: ");
+			case "6":		System.out.print("Get frequency of: ");
 							String word = keyboard.next();
 							System.out.println("Frequency: " + sc.getFrequencyOf(word));
 							break;
@@ -65,7 +65,17 @@ public class Main {
 			case "8":		sc.saveDictionary();
 							break;
 			case "quit":	proceed = false;
-							// TO-DO ask if want to save dictionary
+							if (sc.getModified()) {
+								System.out.print("You have modified the program's dicitonary. If you would like to"
+										+ "perminanty save your changes enter 'yes', otherwise enter 'no': ");
+								String save = keyboard.next();
+								if (save.equalsIgnoreCase("yes")) {
+									sc.saveDictionary();
+								}
+								else {
+									System.out.println("No changes were made to the program's dicitonary.");
+								}
+							}
 							break;
 			default:		System.out.println("Sorry, I did not understand your response. Please try again.");
 							proceed = true;
