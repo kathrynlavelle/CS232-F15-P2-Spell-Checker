@@ -51,6 +51,7 @@ public class LinkedSet<T> implements Set<T> {
 			Node newNode = new Node(newEntry);
 			newNode.setNext(first);
 			first = newNode;
+			size++;
 			added = true;
 		}
 		return added;
@@ -178,6 +179,7 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> intersection(Set<T> anotherSet) {
+		// TO-D0 IMPLEMENT ME
 		Set<T> set = null;
 		return set;
 	}
@@ -195,6 +197,7 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> difference(Set<T> anotherSet) {	
+		// TO-D0 IMPLEMENT ME
 		Set<T> set = null;
 		return set;
 	}

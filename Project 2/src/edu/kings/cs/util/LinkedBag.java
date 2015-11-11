@@ -48,6 +48,7 @@ public class LinkedBag<T> implements Bag<T> {
 		Node newNode = new Node(newEntry);
 		newNode.setNext(first);
 		first = newNode;
+		size++;
 		return true;
 		
 	}
@@ -202,6 +203,7 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return A combined bag.
 	 */
 	public Bag<T> intersection(Bag<T> anotherBag) {
+		// TO-D0 IMPLEMENT ME
 		Bag<T> bag = null;
 		return bag;
 	}
@@ -221,6 +223,7 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return A combined bag.
 	 */
 	public Bag<T> difference(Bag<T> anotherBag) {
+		// TO-D0 IMPLEMENT ME
 		Bag<T> bag = null;
 		return bag;
 	}
