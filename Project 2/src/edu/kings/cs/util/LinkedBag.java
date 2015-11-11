@@ -175,9 +175,16 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return A combined bag.
 	 */
 	public Bag<T> union(Bag<T> anotherBag) {
-		Bag<T> bag = null;
+		Bag<T> bag = anotherBag;
+		Node currNode = first;
+		while (currNode != null) {
+			T data = currNode.getData();
+			if (!bag.contains(data)) {
+				bag.add(data);
+				currNode = currNode.getNext();
+			}
+		}
 		return bag;
-		
 	}
 
 	/**

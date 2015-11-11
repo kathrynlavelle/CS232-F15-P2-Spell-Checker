@@ -153,7 +153,15 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> union(Set<T> anotherSet) {
-		Set<T> set = null;
+		Set<T> set = anotherSet;
+		Node currNode = first;
+		while (currNode != null) {
+			T data = currNode.getData();
+			if (!set.contains(data)) {
+				set.add(data);
+				currNode = currNode.getNext();
+			}
+		}
 		return set;
 	}
 
