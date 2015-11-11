@@ -1,13 +1,14 @@
 package edu.kings.cs.util;
 
 /**
- * 
+ * This class is a linked-list implementation of the Bag<T> interface.
  * @author Kathryn Lavelle
  * @version 2015-11-10
  *
  * @param <T>
  */
 public class LinkedBag<T> implements Bag<T> {
+	
 	private Node first;
 	private int size;
 	
@@ -66,7 +67,6 @@ public class LinkedBag<T> implements Bag<T> {
 			size--;
 		}
 		return removedEntry;
-		
 	}
 
 	/**
@@ -140,7 +140,6 @@ public class LinkedBag<T> implements Bag<T> {
 			}
 		}
 		return found;
-		
 	}
 
 	/**
