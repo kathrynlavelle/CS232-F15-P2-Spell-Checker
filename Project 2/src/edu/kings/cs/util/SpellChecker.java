@@ -24,8 +24,10 @@ public class SpellChecker {
 	 * name of "dictionary.txt".
 	 */
 	public SpellChecker() throws FileNotFoundException {
-		// Initialize dictionary with contents of provided "dictionary.txt" file.
+		// Initialize empty dictionary collection.
 		dictionary = new LinkedSet<String>();
+		
+		// Add contents of provided "dictionary.txt" file dictionary.
 		File file = new File("tempDictionary.txt");
 		try {
 			Scanner scanner = new Scanner(file);
@@ -34,12 +36,11 @@ public class SpellChecker {
 				dictionary.add(line);
 			}
 			scanner.close();
+			System.out.println("dictionary initialized");
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("An error occurred while initializing program dicitonary. File not found.");
 		}
-		
-		System.out.println("dictionary initialized size: " + dictionary.size());
 	}
 	
 	/**
@@ -48,8 +49,32 @@ public class SpellChecker {
 	 * After, displays message indicating number of words found in that document.
 	 */
 	public void readDocument() {
+		// Initialize 2 empty read document collections, one without duplicate words.
 		readDocument = new LinkedBag<String>();
 		readDocumentNoDuplicates = new LinkedSet<String>();
+		
+		// Prompt user for name of read document file.
+		Scanner keyboard = new Scanner(System.in);
+		System.out.print("Enter the file you would like checked with extension: ");
+		String readDocFileName = keyboard.nextLine();
+		
+		// If exists, open file specified by user. Then add words to both collections.
+		File file = new File(readDocFileName);
+		try {
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String word = scanner.next();
+				readDocument.add(word);
+				readDocumentNoDuplicates.add(word);
+			}
+			scanner.close();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("An error occurred while reading document. Specified file not found.");
+		}
+		
+		// Display message showing how many words were in the read document.
+		System.out.println("This document contains " + readDocument.size() + " words.");
 	}
 	
 	/**
@@ -59,6 +84,14 @@ public class SpellChecker {
 	 */
 	public void listCorrectWords() {
 		correctWords = new LinkedSet<String>();
+		if (readDocument != null) {
+			// TO-DO
+		}
+		else {
+			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
+					+ " before using this feature.");
+		}
+		
 		
 	}
 	
@@ -69,6 +102,13 @@ public class SpellChecker {
 	 */
 	public void listIncorrectWords() {
 		incorrectWords = new LinkedSet<String>();
+		if (readDocument != null) {
+			// TO-DO
+		}
+		else {
+			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
+					+ " before using this feature.");
+		}
 	}
 	
 	/**
@@ -78,7 +118,13 @@ public class SpellChecker {
 	 * listed more than once.
 	 */
 	public void approve() {
-		// TO-DO1
+		if (readDocument != null) {
+			// TO-DO
+		}
+		else {
+			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
+					+ " before using this feature.");
+		}
 	}
 	
 	/**
@@ -87,8 +133,13 @@ public class SpellChecker {
 	 * are listed more than once.
 	 */
 	public void approveAll() {
-		// TO-DO
-		
+		if (readDocument != null) {
+			// TO-DO
+		}
+		else {
+			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
+					+ " before using this feature.");
+		}
 	}
 	
 	/**
@@ -100,6 +151,10 @@ public class SpellChecker {
 		int frequency = 0;
 		if (readDocument != null) {
 			frequency = readDocument.getFrequencyOf(word);
+		}
+		else {
+			System.out.println("You have not read in a document. Please indicate file name"
+					+ " before using this feature.");
 		}
 		return frequency;
 	}
