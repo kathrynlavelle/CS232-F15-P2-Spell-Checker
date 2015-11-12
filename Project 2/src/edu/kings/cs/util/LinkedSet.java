@@ -178,10 +178,11 @@ public class LinkedSet<T> implements Set<T> {
 	public Set<T> intersection(Set<T> anotherSet) {
 		Set<T> set = new LinkedSet<T>();
 		Node currNode = first;
-		while (currNode != null) {
+		while (currNode.getNext() != null) {
 			if (anotherSet.contains(currNode.getData())) {
 				set.add(currNode.getData());
 			}
+			currNode = currNode.getNext();
 		}
 		return set;
 	}
@@ -199,8 +200,16 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> difference(Set<T> anotherSet) {	
-		// TO-D0 IMPLEMENT ME
-		Set<T> set = null;
+		Set<T> set = anotherSet;
+		Node currNode = first;
+		while (currNode != null) {
+			if (set.contains(currNode.getData())) {
+				set.remove(currNode.getData());
+			}
+			else {
+				set.add(currNode.getData());
+			}
+		}
 		return set;
 	}
 	

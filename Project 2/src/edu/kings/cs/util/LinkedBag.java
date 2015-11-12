@@ -50,7 +50,6 @@ public class LinkedBag<T> implements Bag<T> {
 		first = newNode;
 		size++;
 		return true;
-		
 	}
 
 	/**
@@ -90,8 +89,7 @@ public class LinkedBag<T> implements Bag<T> {
 				currNode = currNode.getNext();
 			}
 		}
-		return removed;
-		
+		return removed;	
 	}
 
 	/** Removes all entries from this bag. */
@@ -220,6 +218,7 @@ public class LinkedBag<T> implements Bag<T> {
 					bag.add(currNode.getData());
 				}
 			}
+			currNode = currNode.getNext();
 		}
 		return bag;
 	}
@@ -239,8 +238,8 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return A combined bag.
 	 */
 	public Bag<T> difference(Bag<T> anotherBag) {
-		// TO-D0 IMPLEMENT ME
-		Bag<T> bag = null;
+		Bag<T> bag = anotherBag;
+		// TO-DO
 		return bag;
 	}
 	
