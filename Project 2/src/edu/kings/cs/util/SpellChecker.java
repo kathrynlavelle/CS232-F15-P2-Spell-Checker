@@ -54,9 +54,9 @@ public class SpellChecker {
 		readDocumentNoDuplicates = new LinkedSet<String>();
 		
 		// Prompt user for name of read document file.
-		Scanner keyboard = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		System.out.print("Enter the file you would like checked with extension: ");
-		String readDocFileName = keyboard.nextLine();
+		String readDocFileName = input.nextLine();
 		
 		// If exists, open file specified by user. Then add words to both collections.
 		File file = new File(readDocFileName);
@@ -75,8 +75,6 @@ public class SpellChecker {
 			System.out.println("Set contains " + readDocumentNoDuplicates.size() + " words");
 		}
 		catch (FileNotFoundException e) {
-			readDocument = null;
-			readDocumentNoDuplicates = null;
 			System.out.println("Error: File '" + readDocFileName + "' not found. Please try again.");
 		}
 	}
@@ -88,12 +86,12 @@ public class SpellChecker {
 	 */
 	public void listCorrectWords() {
 		// Initialize empty corretWords collection.
-		correctWords = new LinkedSet<String>();
+		//correctWords = new LinkedSet<String>();
 		if (readDocumentNoDuplicates != null) {
 			// Add all of the words from the readDocument that are also in the dictionary to the
 			// correctWords collection.
 			correctWords = readDocumentNoDuplicates.intersection(dictionary);
-			
+	
 			// List the correctly spelled words from the read document.
 			System.out.println("Correctly spelled words:");
 			Object[] correctWordsArray = correctWords.toArray();
