@@ -85,18 +85,21 @@ public class SpellChecker {
 	 * words are not listed more than once.
 	 */
 	public void listCorrectWords() {
-		// Initialize empty corretWords collection.
-		//correctWords = new LinkedSet<String>();
 		if (readDocumentNoDuplicates != null) {
-			// Add all of the words from the readDocument that are also in the dictionary to the
+			// Add all of the words from the read document that are also in the dictionary to the
 			// correctWords collection.
 			correctWords = readDocumentNoDuplicates.intersection(dictionary);
 	
-			// List the correctly spelled words from the read document.
-			System.out.println("Correctly spelled words:");
-			Object[] correctWordsArray = correctWords.toArray();
-			for (int i = 0; i < correctWordsArray.length; i++) {
-				System.out.println(correctWordsArray[i]);
+			if (correctWords.size() > 0) {
+				// List correct words from the read document.
+				System.out.println("Correctly spelled words:");
+				Object[] correctWordsArray = correctWords.toArray();
+				for (int i = 0; i < correctWordsArray.length; i++) {
+					System.out.println(correctWordsArray[i]);
+				}
+			}
+			else {
+				System.out.println("There were no correctly spelled words.");
 			}
 		}
 		else {
@@ -111,9 +114,22 @@ public class SpellChecker {
 	 * be listed more than once.
 	 */
 	public void listIncorrectWords() {
-		incorrectWords = new LinkedSet<String>();
 		if (readDocument != null) {
-			// TO-DO
+			// Add all of the words from the read document that are not in the dictionary to the 
+			// incorrectWords collection.
+			incorrectWords = readDocumentNoDuplicates.difference(dictionary);
+			
+			if (incorrectWords.size() > 0) {
+				// List incorrect words from the read document.
+				System.out.println("Incorrectly spelled words:");
+				Object[] incorrectWordsArray = incorrectWords.toArray();
+				for (int i = 0; i < incorrectWordsArray.length; i++) {
+					System.out.println(incorrectWordsArray[i]);
+				}
+			}
+			else {
+				System.out.println("There were no misspelled words.");
+			}
 		}
 		else {
 			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
