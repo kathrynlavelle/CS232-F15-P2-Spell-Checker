@@ -75,6 +75,8 @@ public class SpellChecker {
 			System.out.println("Set contains " + readDocumentNoDuplicates.size() + " words");
 		}
 		catch (FileNotFoundException e) {
+			readDocument = null;
+			readDocumentNoDuplicates = null;
 			System.out.println("Error: File '" + readDocFileName + "' not found. Please try again.");
 		}
 	}
