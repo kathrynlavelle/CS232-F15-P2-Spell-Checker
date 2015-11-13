@@ -72,7 +72,6 @@ public class SpellChecker {
 
 			// Display message showing how many words were in the read document.
 			System.out.println("This document contains " + readDocument.size() + " words.");
-			System.out.println("Set contains " + readDocumentNoDuplicates.size() + " words");
 		}
 		catch (FileNotFoundException e) {
 			readDocument = null;
@@ -147,7 +146,20 @@ public class SpellChecker {
 	 */
 	public void approve() {
 		if (readDocument != null) {
-			// TO-DO
+			if (incorrectWords.size() > 0) {
+				Scanner sc = new Scanner(System.in);
+				Object[] incorrectWordsArray = incorrectWords.toArray();
+				for (int i = 0; i < incorrectWordsArray.length; i++) {
+					System.out.print("Would you like to add '" + incorrectWordsArray[i] + "' to the dictionary? (Y/N): ");
+					String response = sc.next();
+					if (response.equalsIgnoreCase("Y")) {
+						dictionary.add((String)incorrectWordsArray[i]);
+					}
+				}
+			}
+			else {
+				System.out.println("There were no misspelled words.");
+			}
 		}
 		else {
 			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
@@ -162,7 +174,24 @@ public class SpellChecker {
 	 */
 	public void approveAll() {
 		if (readDocument != null) {
-			// TO-DO
+			if (incorrectWords.size() > 0) {
+				Scanner sc = new Scanner(System.in);
+				Object[] incorrectWordsArray = incorrectWords.toArray();
+				System.out.println("Would you like to add the following misspelled words to the dictionary?");
+				for (int i = 0; i < incorrectWordsArray.length; i++) {
+					System.out.println(incorrectWordsArray[i]);
+				}
+				System.out.print("(Y/N): ");
+				String response = sc.next();
+				if (response.equalsIgnoreCase("Y")) {
+					for (int i = 0; i < incorrectWordsArray.length; i++) {
+						dictionary.add((String)incorrectWordsArray[i]);
+					}
+				} 
+			}
+			else {
+				System.out.println("There were no misspelled words.");
+			}
 		}
 		else {
 			System.out.println("You have not read in a document to be spell checked. Please indicate file name"
