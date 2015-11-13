@@ -96,7 +96,6 @@ public class SpellChecker {
 			readDocumentNoDuplicates = null;
 			System.out.println("Error: File '" + readDocFileName + "' not found. Please try again.");
 		}
-		input.close();
 	}
 	
 	/**
@@ -178,7 +177,6 @@ public class SpellChecker {
 						modified = true;
 					}
 				}
-				sc.close();
 			}
 			else {
 				System.out.println("There were no misspelled words.");
@@ -213,8 +211,7 @@ public class SpellChecker {
 					incorrectWords.clear();
 					System.out.println("Your changes were made to the dictionary.");
 					modified = true;
-				}
-				sc.close();
+				} 
 			}
 			else {
 				System.out.println("There were no misspelled words.");
