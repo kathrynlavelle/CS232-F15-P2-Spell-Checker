@@ -64,8 +64,8 @@ public class SpellChecker {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				String word = scanner.next();
-				readDocument.add(word);
-				readDocumentNoDuplicates.add(word);
+				readDocument.add(word.replaceFirst("^[^a-zA-Z]+","").replaceAll("[^a-zA-Z]+$", ""));
+				readDocumentNoDuplicates.add(word.replaceFirst("^[^a-zA-Z]+","").replaceAll("[^a-zA-Z]+$", ""));
 			}
 			scanner.close();
 			System.out.println("Document read");
