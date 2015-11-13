@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * 
  * @author Kathryn Lavelle
- * @version 2015-11-11
+ * @version 2015-11-1
  */
 public class SpellChecker {
 	
@@ -154,6 +154,7 @@ public class SpellChecker {
 					String response = sc.next();
 					if (response.equalsIgnoreCase("Y")) {
 						dictionary.add((String)incorrectWordsArray[i]);
+						modified = true;
 					}
 				}
 			}
@@ -186,6 +187,7 @@ public class SpellChecker {
 				if (response.equalsIgnoreCase("Y")) {
 					for (int i = 0; i < incorrectWordsArray.length; i++) {
 						dictionary.add((String)incorrectWordsArray[i]);
+						modified = true;
 					}
 				} 
 			}
@@ -229,8 +231,13 @@ public class SpellChecker {
 	 * (Replaces current contents and writes each word on a new line)
 	 */
 	public void saveDictionary() {
-		// TO-DO
-		System.out.println("Saving...");
+		if (modified) {
+			System.out.println("Saving...");
+		}
+		else {
+			System.out.println("You have not read in a document. Please indicate file name"
+					+ " before using this feature.");
+		}
 	}
 	
 	/**
@@ -242,3 +249,4 @@ public class SpellChecker {
 	}
 
 }
+a
