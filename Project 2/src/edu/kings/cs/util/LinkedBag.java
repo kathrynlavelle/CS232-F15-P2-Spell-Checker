@@ -8,8 +8,10 @@ package edu.kings.cs.util;
  * @param <T>
  */
 public class LinkedBag<T> implements Bag<T> {
-	
+	/** Reference to the first node in the bag. **/
 	private Node first;
+	
+	/** The number of elements in the bag. **/
 	private int size;
 	
 	/**
@@ -253,31 +255,58 @@ public class LinkedBag<T> implements Bag<T> {
 	 * Private inner class representing a node in this Bag.
 	 */
 	private class Node {
-
+		/** The data in the node. **/
 		private T data;
+		
+		/** The node after the current node. **/
 		private Node next;
 
+		/**
+		 * Instantiates a new node.
+		 * @param element The data stored in this node.
+		 */
 		private Node(T element) {
 			this(element, null);
 		}
 
+		/**
+		 * Instantiates a new node with a corresponding next node.
+		 * @param element The data stored in this node.
+		 * @param nextNode The node following this node.
+		 */
 		private Node(T element, Node nextNode) {
 			data = element;
 			next = nextNode;
 		}
 
+		/**
+		 * Accessor for the data contained in this node.
+		 * @return The node's data.
+		 */
 		private T getData() {
 			return data;
 		}
 
+		/**
+		 * Sets the node's data.
+		 * @param newData The node's new data.
+		 */
 		private void setData(T newData) {
 			data = newData;
 		}
 
+		/**
+		 * Accessor for the next node.
+		 * @return The next node.
+		 */
 		private Node getNext() {
 			return next;
 		}
 
+		/**
+		 * Sets the next node.
+		 * @param nextNode The next node.
+		 */
 		private void setNext(Node nextNode) {
 			next = nextNode;
 		}

@@ -9,7 +9,10 @@ package edu.kings.cs.util;
  */
 public class LinkedSet<T> implements Set<T> {
 	
+	/** The first node in the set. **/
 	private Node first;
+	
+	/** The number of elements in the set. **/
 	private int size;
 	
 	/**
@@ -215,30 +218,58 @@ public class LinkedSet<T> implements Set<T> {
 	 */
 	private class Node {
 
+		/** The data stored in this node. **/
 		private T data;
+		
+		/** The node after the current node. **/
 		private Node next;
 
+		/**
+		 * Instantiates a new node.
+		 * @param element The data in this node.
+		 */
 		private Node(T element) {
 			this(element, null);
 		}
 
+		/** Instantiates a new node with a corresponding next node.
+		 * 
+		 * @param element The data stored in this node.
+		 * @param nextNode The node after this node.
+		 */
 		private Node(T element, Node nextNode) {
 			data = element;
 			next = nextNode;
 		}
 
+		/**
+		 * Accessor for the data in this node.
+		 * @return The data in this node.
+		 */
 		private T getData() {
 			return data;
 		}
 
+		/**
+		 * Sets the node's data.
+		 * @param newData The node's new data.
+		 */
 		private void setData(T newData) {
 			data = newData;
 		}
 
+		/**
+		 * Accessor for the next node.
+		 * @return The next node.
+		 */
 		private Node getNext() {
 			return next;
 		}
 
+		/**
+		 * Sets the next node.
+		 * @param nextNode The next node.
+		 */
 		private void setNext(Node nextNode) {
 			next = nextNode;
 		}
