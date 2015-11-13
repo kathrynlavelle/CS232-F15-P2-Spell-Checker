@@ -69,10 +69,10 @@ public class Main {
 							break;
 			case "quit":	proceed = false;
 							if (sc.getModified()) {
-								System.out.print("You have modified the program's dicitonary. If you would like to"
-										+ "perminanty save your changes enter 'yes', otherwise enter 'no': ");
+								System.out.print("You have modified the program's dicitonary. If you would like to "
+										+ "perminanty save your changes enter 'Y', otherwise enter 'N': ");
 								String save = keyboard.next();
-								if (save.equalsIgnoreCase("yes")) {
+								if (save.equalsIgnoreCase("y")) {
 									sc.saveDictionary();
 								}
 								else {
