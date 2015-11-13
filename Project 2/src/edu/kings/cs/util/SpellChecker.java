@@ -81,6 +81,9 @@ public class SpellChecker {
 			scanner.close();
 			System.out.println("Document read");
 
+			// Get initial list of incorrect and correct words.
+			//incorrectWords = readDocumentNoDuplicates.difference(dictionary);
+			
 			// Display message showing how many words were in the read document.
 			System.out.println("This document contains " + readDocument.size() + " words.");
 		}
@@ -165,6 +168,8 @@ public class SpellChecker {
 					String response = sc.next();
 					if (response.equalsIgnoreCase("Y")) {
 						dictionary.add((String)incorrectWordsArray[i]);
+						incorrectWords.remove((String)incorrectWordsArray[i]);
+						System.out.println("Your changes were made to the dicitonary.");
 						modified = true;
 					}
 				}
@@ -198,6 +203,8 @@ public class SpellChecker {
 				if (response.equalsIgnoreCase("Y")) {
 					for (int i = 0; i < incorrectWordsArray.length; i++) {
 						dictionary.add((String)incorrectWordsArray[i]);
+						incorrectWords.clear();
+						System.out.println("Your changes were made to the dictionary.");
 						modified = true;
 					}
 				} 
@@ -246,8 +253,7 @@ public class SpellChecker {
 			System.out.println("Saving...");
 		}
 		else {
-			System.out.println("You have not read in a document. Please indicate file name"
-					+ " before using this feature.");
+			System.out.println("Saving un-changed dictionary...");
 		}
 	}
 	
