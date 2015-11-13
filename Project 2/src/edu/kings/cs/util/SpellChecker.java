@@ -1,7 +1,10 @@
 package edu.kings.cs.util;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -38,8 +41,9 @@ public class SpellChecker {
 		dictionary = new LinkedSet<String>();
 		
 		// Add contents of provided "dictionary.txt" file to dictionary.
-		File file = new File("tempDictionary.txt");
 		try {
+			File file = new File("tempDictionary.txt");
+			System.out.println("Initializing program dicitonary...");
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
@@ -70,8 +74,8 @@ public class SpellChecker {
 		String readDocFileName = input.nextLine();
 		
 		// If exists, open file specified by user. Then add words to both collections.
-		File file = new File(readDocFileName);
 		try {
+			File file = new File(readDocFileName);
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				String word = scanner.next();
@@ -81,8 +85,8 @@ public class SpellChecker {
 			scanner.close();
 			System.out.println("Document read");
 
-			// Get initial list of incorrect and correct words.
-			//incorrectWords = readDocumentNoDuplicates.difference(dictionary);
+			// Get initial list of incorrect words.
+			incorrectWords = readDocumentNoDuplicates.difference(dictionary);
 			
 			// Display message showing how many words were in the read document.
 			System.out.println("This document contains " + readDocument.size() + " words.");
@@ -203,10 +207,10 @@ public class SpellChecker {
 				if (response.equalsIgnoreCase("Y")) {
 					for (int i = 0; i < incorrectWordsArray.length; i++) {
 						dictionary.add((String)incorrectWordsArray[i]);
-						incorrectWords.clear();
-						System.out.println("Your changes were made to the dictionary.");
-						modified = true;
 					}
+					incorrectWords.clear();
+					System.out.println("Your changes were made to the dictionary.");
+					modified = true;
 				} 
 			}
 			else {
@@ -247,13 +251,31 @@ public class SpellChecker {
 	/**
 	 * Saves the contents of the programs dictionary to the "dictionary.txt" file.
 	 * (Replaces current contents and writes each word on a new line)
+	 * @throws IOException Thrown if file writing is interrupted in any way.
 	 */
-	public void saveDictionary() {
+	public void saveDictionary() throws IOException {
 		if (modified) {
 			System.out.println("Saving...");
 		}
 		else {
 			System.out.println("Saving un-changed dictionary...");
+		}
+		try {
+			FileWriter fw = new FileWriter("tempDictionary.txt", false);
+			BufferedWriter bw = new BufferedWriter(fw);
+			Object[] dictionaryArray = dictionary.toArray();
+			for (int i = 0; i < dictionary.size(); i++) {
+				String word = (String)dictionaryArray[i];
+				System.out.println(word);
+				bw.write(word);
+				bw.newLine();
+			}
+			bw.close();
+			modified = false;
+		}
+		catch (IOException e) {
+			System.out.println("An error occurred while attempting to save the dictionary.");
+			System.out.println(e.getMessage());
 		}
 	}
 	

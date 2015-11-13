@@ -1,6 +1,7 @@
 package edu.kings.cs.util;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -13,11 +14,13 @@ import java.util.Scanner;
 public class Main {
 
 	/**
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 * Displays a menu of options to the user in order to read and spell check a document.
 	 * @param args An array of String arguments.
-	 * @throws FileNotFoundException Thrown if SpellChecker cannot find "dictionary.txt".
+	 * @throws 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		// Initialize program dictionary.
 		SpellChecker sc = new SpellChecker();
 		System.out.println("Welcome!");
@@ -70,7 +73,7 @@ public class Main {
 			case "quit":	proceed = false;
 							if (sc.getModified()) {
 								System.out.print("You have modified the program's dicitonary. If you would like to "
-										+ "perminanty save your changes enter 'Y', otherwise enter 'N': ");
+										+ "permanantly save your changes enter 'Y', otherwise enter 'N': ");
 								String save = keyboard.next();
 								if (save.equalsIgnoreCase("y")) {
 									sc.saveDictionary();
