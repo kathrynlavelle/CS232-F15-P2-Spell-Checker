@@ -201,8 +201,12 @@ public class LinkedSet<T> implements Set<T> {
 	 *            The set that is to be removed.
 	 * @return A combined set.
 	 */
-	public Set<T> difference(Set<T> anotherSet) {	
-		Set<T> set = this;
+	@SuppressWarnings("unchecked")
+	public Set<T> difference(Set<T> anotherSet) {
+		Set<T> set = new LinkedSet<T>();
+		for (int i = 0; i < this.size; i++){
+			set.add((T)this.toArray()[i]);
+		}
 		Node currNode = first;
 		while (currNode != null) {
 			if (anotherSet.contains(currNode.getData())) {
@@ -268,7 +272,7 @@ public class LinkedSet<T> implements Set<T> {
 
 		/**
 		 * Sets the next node.
-		 * @param nextNode The next node.
+		 * @param nextNode
 		 */
 		private void setNext(Node nextNode) {
 			next = nextNode;

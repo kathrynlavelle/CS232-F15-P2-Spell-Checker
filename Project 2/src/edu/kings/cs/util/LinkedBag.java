@@ -239,8 +239,12 @@ public class LinkedBag<T> implements Bag<T> {
 	 *            The bag that is to be removed.
 	 * @return A combined bag.
 	 */
+	@SuppressWarnings("unchecked")
 	public Bag<T> difference(Bag<T> anotherBag) {
-		Bag<T> bag = this;
+		Bag<T> bag = new LinkedBag<T>();
+		for (int i = 0; i < this.size; i++){
+			bag.add((T)this.toArray()[i]);
+		}
 		Node currNode = first;
 		while (currNode != null) {
 			if (anotherBag.contains(currNode.getData())) {
