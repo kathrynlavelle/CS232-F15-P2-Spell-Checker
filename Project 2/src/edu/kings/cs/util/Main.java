@@ -4,15 +4,16 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * 
+ * Uses SpellChecker to spell-check a document provided by the user.
+ * Read document should be found in the root directory of this project, and should
+ * be the same level as the src folder.
  * @author Kathryn Lavelle
- * @version 2015-11-11
- *
+ * @version 2015-11-13
  */
 public class Main {
 
 	/**
-	 * 
+	 * Displays a menu of options to the user in order to read and spell check a document.
 	 * @param args An array of String arguments.
 	 * @throws FileNotFoundException Thrown if SpellChecker cannot find "dictionary.txt".
 	 */

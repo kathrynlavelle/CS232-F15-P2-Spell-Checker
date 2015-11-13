@@ -5,21 +5,31 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * 
+ * Spell Checks a document using a given "dicitonary.txt" file found in the project root directory.
  * @author Kathryn Lavelle
- * @version 2015-11-1
+ * @version 2015-11-13
  */
 public class SpellChecker {
-	
+	/** The dictionary containing all words. **/
 	private Set<String> dictionary;
+	
+	/** The read document containing all words. **/
 	private Bag<String> readDocument;
+	
+	/** The read document containing no duplicate words. **/
 	private Set<String> readDocumentNoDuplicates;
+	
+	/** The collection of correctly spelled words. **/
 	private Set<String> correctWords;
+	
+	/** The collection of incorrectly spelled words. **/
 	private Set<String> incorrectWords;
+	
+	/** A boolean representing whether the dictionary has been modified. **/
 	private boolean modified = false;
 	
 	/**
-	 * 
+	 * Reads in and initializes the dictionary with the contents of the provided "dictionary.txt" file.
 	 * @throws FileNotFoundException Thrown if no dictionary file was found by the
 	 * name of "dictionary.txt".
 	 */
@@ -47,6 +57,7 @@ public class SpellChecker {
 	 * Prompts user for name of file that contains the read document.
 	 * Scans file and reads words one at a time storing them in a collection.
 	 * After, displays message indicating number of words found in that document.
+	 * @throws FileNotFoundException Thrown if program cannot find the specified read document.
 	 */
 	public void readDocument() throws FileNotFoundException{
 		// Initialize 2 empty read document collections, one without duplicate words.
@@ -203,7 +214,7 @@ public class SpellChecker {
 	
 	/**
 	 * Returns the number of times a word appears in the read document. 
-	 * 
+	 * @param word The word to get the frequency of.
 	 * @return count The number of times a word appears in a document.
 	 */
 	public int getFrequencyOf(String word) {
@@ -241,12 +252,10 @@ public class SpellChecker {
 	}
 	
 	/**
-	 * 
+	 * Returns whether or not the dictionary was modified by the user.
 	 * @return modified Whether or not the programs dictionary was modified.
 	 */
 	public boolean getModified() {
 		return modified;
 	}
-
 }
-a
