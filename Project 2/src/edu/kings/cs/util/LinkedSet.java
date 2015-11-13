@@ -55,7 +55,6 @@ public class LinkedSet<T> implements Set<T> {
 			added = true;
 		}
 		return added;
-		
 	}
 
 	/**
@@ -200,15 +199,13 @@ public class LinkedSet<T> implements Set<T> {
 	 * @return A combined set.
 	 */
 	public Set<T> difference(Set<T> anotherSet) {	
-		Set<T> set = anotherSet;
+		Set<T> set = this;
 		Node currNode = first;
 		while (currNode != null) {
-			if (set.contains(currNode.getData())) {
+			if (anotherSet.contains(currNode.getData())) {
 				set.remove(currNode.getData());
 			}
-			else {
-				set.add(currNode.getData());
-			}
+			currNode = currNode.getNext();
 		}
 		return set;
 	}

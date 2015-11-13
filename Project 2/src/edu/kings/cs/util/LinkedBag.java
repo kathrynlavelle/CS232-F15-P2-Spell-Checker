@@ -238,8 +238,14 @@ public class LinkedBag<T> implements Bag<T> {
 	 * @return A combined bag.
 	 */
 	public Bag<T> difference(Bag<T> anotherBag) {
-		Bag<T> bag = anotherBag;
-		// TO-DO
+		Bag<T> bag = this;
+		Node currNode = first;
+		while (currNode != null) {
+			if (anotherBag.contains(currNode.getData())) {
+				bag.remove(currNode.getData());
+			}
+			currNode = currNode.getNext();
+		}
 		return bag;
 	}
 	
