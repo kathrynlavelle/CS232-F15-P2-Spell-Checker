@@ -42,7 +42,7 @@ public class SpellChecker {
 		
 		// Add contents of provided "dictionary.txt" file to dictionary.
 		try {
-			File file = new File("tempDictionary.txt");
+			File file = new File("dictionary.txt");
 			System.out.println("Initializing program dicitonary...");
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
@@ -261,7 +261,7 @@ public class SpellChecker {
 			System.out.println("Saving un-changed dictionary...");
 		}
 		try {
-			FileWriter fw = new FileWriter("tempDictionary.txt", false);
+			FileWriter fw = new FileWriter("dictionary.txt", false);
 			BufferedWriter bw = new BufferedWriter(fw);
 			Object[] dictionaryArray = dictionary.toArray();
 			for (int i = 0; i < dictionary.size(); i++) {
